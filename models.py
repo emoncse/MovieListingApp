@@ -17,4 +17,6 @@ class Movie:
         return f"Movie(title={self.title}, year={self.year}, genre={self.genre}, director={self.director}, rating={self.rating})"
 
     def details(self):
-        return f"Title: {self.title}, Cast: {', '.join(self.cast)}, Category: {self.category}, Release Date: {self.release_date}, Budget: ${self.budget}"
+        return (f"Title: {self.title}, Year: {self.year}, Genre: {self.genre}, Director: {self.director}, "
+                f"Rating: {self.rating}, Cast: {', '.join(self.cast)}, Category: {self.category}, "
+                f"Release Date: {self.release_date}, Budget: ${self.budget}")

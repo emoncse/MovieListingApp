@@ -9,18 +9,15 @@ class MovieManager:
     def add_movie(self, movie):
         self.movies.append(movie)
 
-    def register_user(self, email):
-        if email not in self.users:
-            self.users[email] = User(email)
-        return self.users[email]
+    def register_user(self, name, email):
+        if (name, email) not in self.users:
+            self.users[(name, email)] = User(name, email)
+        return self.users[(name, email)]
 
     def search_movies(self, query):
-        return sorted(
-            [movie.details() for movie in self.movies if self.movie_matches_query(movie, query)],
-            key=lambda x: x.title
-        )
+        matching_movies = [movie for movie in self.movies if self.movie_matches_query(movie, query)]
+        return sorted(matching_movies, key=lambda movie: movie.title)
 
-    @staticmethod
     def movie_matches_query(self, movie, query):
         query_lower = query.lower()
         return (query_lower in movie.title.lower() or
@@ -29,4 +26,4 @@ class MovieManager:
                 query_lower in movie.genre.lower() or
                 query_lower in movie.director.lower() or
                 str(movie.year) == query_lower or
-                str(movie.rating).lower() == query_lower)
+                str(movie.rating) == query_lower)
